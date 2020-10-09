@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<form>
+ <div class="container">
+            <h1 class="text-success text-center">Signup Form</h1>
+            <div class="col-lg-8 m-auto d-block">
+
+
+                <div class="form-group" id="email-div">
+                    <label>Email:</label>
+                    <input type="text" placeholder="Enter Email" name="email" id="emails" onblur="checkEmailValue()" class="form-control" autocomplete="off" />
+                    <span id="emailsid" class="text-danger font-weight-bold" style="visibility: hidden"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" placeholder="Enter Password" name="psw" id="pwd" onblur="checkPasswordValue()" class="form-control" autocomplete="off" />
+                    <span id="passwords" class="text-danger font-weight-bold"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password:</label>
+                    <input type="password" placeholder="Confirm Password" name="cpsw" id="cpwd" onblur="checkcmpPasswordValue()" class="form-control" autocomplete="off" />
+                    <span id="cpasswords" class="text-danger font-weight-bold"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number:</label>
+                    <input type="text" placeholder="Enter Mobile Number" name="mobile" id="mobilenumber" onblur="checkMobileValue()" maxlength="10" class="form-control" autocomplete="off" />
+                    <span id="number" class="text-danger font-weight-bold"></span>
+                </div>
+                <input type="button" value="submit" onclick="checkValidation()" class="btn btn-success" />
+            </div>
+        </div>
+     </form>
+	 </div>
+	</div>
+ 
+<script type="text/javascript">
+        var pwd;
+        var cpwd
+        var mobilenumber;
+      
+
+
+        function checkValidation()
+        {
+            emails = document.getElementById("emails").value;
+            pwd = document.getElementById("pwd").value;
+            var cpwd = document.getElementById("cpwd").value;
+            mobilenumber = document.getElementById("mobilenumber").value;
+            if (emails == "") {
+
+                document.getElementById("emailsid").innerHTML = "please fill the Email field";
+                document.getElementById("emails").style.border = "1px solid red";
+                document.getElementById("emailsid").style.visibility = "visible";
+                
+            }
+
+            if (pwd == "") {
+                document.getElementById("passwords").innerHTML = " please fill the password field.";
+                document.getElementById("pwd").style.border = "1px solid red";
+                
+                
+            }
+            
+            if (cpwd == "") {
+                document.getElementById("cpasswords").innerHTML = " please fill the password field.";
+                document.getElementById("cpwd").style.border = "1px solid red";
+               
+               
+            }
+            
+            if (mobilenumber == "") {
+                document.getElementById("number").innerHTML = " please fill the mobilenumber field";
+                document.getElementById("mobilenumber").style.border = "1px solid red";
+               
+                
+            }
+
+           
+
+        }
+        function checkEmailValue() {
+           
+             emails = document.getElementById("emails").value;   
+            var regx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (regx.test(emails)) {
+              
+                document.getElementById("emailsid").innerHTML = " ";
+                document.getElementById("emailsid").style.visibility = "visible";
+                document.getElementById("emailsid").style.color = "green";
+            }
+            else {
+                document.getElementById("emailsid").innerHTML = "please enter valid email must have alphabets,numbers,specialcharacter(&)";
+                document.getElementById("emailsid").style.visibility = "visible";
+                document.getElementById("emails").style.border = "1px solid red";
+                document.getElementById("emails").focus();
+               
+                return false;
+
+
+            }
+            if (emails != "") {
+                document.getElementById("emailsid").innerHTML = "";
+                document.getElementById("emails").style.border = "1px solid #ced4da";
+            }
+
+           
+        }
+
+        function checkPasswordValue()
+        {
+             pwd = document.getElementById("pwd").value;
+   
+            if (pwd.length <= 7) {
+                document.getElementById("passwords").innerHTML = "password length atleast 8 characters.";
+                document.getElementById("pwd").style.border = "1px solid red";
+                document.getElementById("pwd").focus();
+              
+                return false;
+            }
+            if (pwd!= "") {
+                document.getElementById("passwords").innerHTML = "";
+                document.getElementById("pwd").style.border = "1px solid #ced4da";
+            }
+        }
+
+        function checkcmpPasswordValue() {
+          
+            var cpwd = document.getElementById("cpwd").value;
+            if (cpwd.length <= 7) {
+                document.getElementById("cpasswords").innerHTML = "Confirm password length atleast 8 characters.";
+                document.getElementById("cpwd").style.border = "1px solid red";
+                document.getElementById("cpwd").focus();
+               
+                return false;
+            }
+            if (cpwd != "") {
+                document.getElementById("cpasswords").innerHTML = "";
+                document.getElementById("cpwd").style.border = "1px solid #ced4da";
+            }
+            if(pwd!=cpwd)
+            {
+              
+                document.getElementById("cpasswords").innerHTML = "Mis Match both  Password & Confirm Password.";
+                document.getElementById("cpwd").style.border = "1px solid red";
+                document.getElementById("cpwd").focus();
+                return false;
+            }
+        }
+        function checkMobileValue() {
+
+
+            mobilenumber = document.getElementById("mobilenumber").value;
+            
+            if (isNaN(mobilenumber)) {
+                document.getElementById("number").innerHTML = "User must write digits only not characters ";
+                document.getElementById("mobilenumber").style.border = "1px solid red";
+                document.getElementById("mobilenumber").focus();
+               
+                return false;
+            }
+            
+            if (mobilenumber.length <= 9) {
+                document.getElementById("number").innerHTML = "Mobile number should be 10 Numbers.";
+                document.getElementById("mobilenumber").style.border = "1px solid red";
+               
+                return false;
+            }
+            if (mobilenumber != "") {
+                document.getElementById("number").innerHTML = "";
+                document.getElementById("mobilenumber").style.border = "1px solid #ced4da";
+            }
+
+        }
+        //submit validation
+        /*function display() {
+                var myform = document.getElementById('myform');
+               myform.addEventListener("submit",(e)=>{ 
+               e.preventDefault();
+                });*/
+
+
+    </script>
+</body>
+</html>
